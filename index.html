@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>APP Beneficiarios — Agencia IDEA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#171717',
+            secondary: '#666666',
+            grey: '#999999',
+            green: '#046723',
+            badge: '#00f56e',
+            navy: '#001e78',
+            'navy-dark': '#001654',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            brand: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; color: #171717; }
+    .nav-link { color: #171717; font-size: 13px; font-weight: 400; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+    .nav-link:hover { color: #046723; }
+    .nav-link.active { color: #046723; font-weight: 500; }
+    .card-img-eu {
+      background: linear-gradient(135deg, #001e78 0%, #0032c8 50%, #001654 100%);
+    }
+    .card-img-norm {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    }
+    .card-img-elem {
+      background: linear-gradient(135deg, #003366 0%, #004080 50%, #0055a5 100%);
+    }
+    .card-img-sop {
+      background: linear-gradient(135deg, #046723 0%, #068a30 50%, #04501b 100%);
+    }
+    .card-img-dis {
+      background: linear-gradient(135deg, #6b21a8 0%, #7c3aed 50%, #4c1d95 100%);
+    }
+  </style>
+</head>
+<body class="bg-white min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+    <div class="max-w-[1512px] mx-auto px-6 h-[68px] flex items-center justify-between gap-8">
+      <a class="shrink-0 flex items-center gap-3" href="index.html">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 bg-navy rounded flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="10" stroke="#00f56e" stroke-width="2"/>
+              <path d="M12 6l1.5 4.5H18l-3.75 2.73 1.43 4.4L12 15.27l-3.68 2.46 1.43-4.4L6 10.5h4.5L12 6z" fill="#fff"/>
+            </svg>
+          </div>
+          <span class="font-semibold text-navy text-[15px] leading-tight">APP<br><span class="text-[11px] font-normal text-grey">BENEFICIARIOS</span></span>
+        </div>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-6 flex-1 justify-center">
+        <a class="nav-link active" href="index.html">INICIO</a>
+        <a class="nav-link" href="normativa.html">NORMATIVA</a>
+        <a class="nav-link" href="elementos-de-comunicacion.html">ELEMENTOS DE COMUNICACIÓN</a>
+        <a class="nav-link" href="soportes.html">SOPORTES</a>
+        <a class="nav-link" href="disena-tu-soporte.html">DISEÑA TU SOPORTE</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <div class="relative hidden lg:block">
+          <input type="text" placeholder="Buscar..." class="border border-gray-200 rounded-full px-4 py-1.5 text-sm text-primary placeholder-grey focus:outline-none focus:border-green w-44">
+          <svg class="absolute right-3 top-2 w-4 h-4 text-grey" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+        </div>
+        <button id="mobile-menu-btn" class="lg:hidden text-primary p-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile nav -->
+    <div id="mobile-nav" class="hidden lg:hidden border-t border-gray-100 bg-white px-6 py-4 flex flex-col gap-3">
+      <a class="nav-link active py-1" href="index.html">INICIO</a>
+      <a class="nav-link py-1" href="normativa.html">NORMATIVA</a>
+      <a class="nav-link py-1" href="elementos-de-comunicacion.html">ELEMENTOS DE COMUNICACIÓN</a>
+      <a class="nav-link py-1" href="soportes.html">SOPORTES</a>
+      <a class="nav-link py-1" href="disena-tu-soporte.html">DISEÑA TU SOPORTE</a>
+    </div>
+  </header>
+
+  <!-- Hero slide (full-width banner) -->
+  <div class="relative w-full overflow-hidden hidden sm:block" style="height: 520px; background: linear-gradient(120deg, #001e78 0%, #0032c8 45%, #001654 100%);">
+    <!-- Background pattern -->
+    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 20% 50%, #00f56e 0%, transparent 50%), radial-gradient(circle at 80% 20%, #ffffff 0%, transparent 40%);"></div>
+
+    <!-- EU Stars SVG overlay (large, decorative) -->
+    <div class="absolute right-[8%] top-[10%] opacity-10">
+      <svg width="380" height="380" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <g fill="#FFD700">
+          <polygon points="50,8 52,14 58,14 53,18 55,24 50,20 45,24 47,18 42,14 48,14" transform="rotate(0,50,50)"/>
+          <polygon points="50,8 52,14 58,14 53,18 55,24 50,20 45,24 47,18 42,14 48,14" transform="rotate(30,50,50)"/>
+          <polygon points="50,8 52,14 58,14 53,18 55,24 50,20 45,24 47,18 42,14 48,14" transform="rotate(60,50,50)"/>
+          <polygon points="50,8 52,14 58,14 53,18 55,24 50,20 45,24 47,18 42,14 48,14" transform="rotate(90,50,50)"/>
+          <polygon points="50,8 52,14 58,14 53,18 55,24 50,20 45,24 47,18 42,14 48,14" transform="rotate(120,50,50)"/>
+          <polygon points="50,8 52,14 58,14 53,18 55,24 50,20 45,24 47,18 42,14 48,14" transform="rotate(150,50,50)"/>
+          <polygon points="50,8 52,14 58,14 53,18 55,24 50,20 45,24 47,18 42,14 48,14" transform="rotate(180,50,50)"/>
+          <polygon points="50,8 52,14 58,14 53,18 55,24 50,20 45,24 47,18 42,14 48,14" transform="rotate(210,50,50)"/>
+          <polygon points="50,8 52,14 58,14 53,18 55,24 50,20 45,24 47,18 42,14 48,14" transform="rotate(240,50,50)"/>
+          <polygon points="50,8 52,14 58,14 53,18 55,24 50,20 45,24 47,18 42,14 48,14" transform="rotate(270,50,50)"/>
+          <polygon points="50,8 52,14 58,14 53,18 55,24 50,20 45,24 47,18 42,14 48,14" transform="rotate(300,50,50)"/>
+          <polygon points="50,8 52,14 58,14 53,18 55,24 50,20 45,24 47,18 42,14 48,14" transform="rotate(330,50,50)"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Content overlay -->
+    <div class="absolute inset-0 flex items-center">
+      <div class="w-full max-w-[1512px] mx-auto px-16 relative">
+        <!-- Main text block -->
+        <div class="max-w-[42%]">
+          <div class="inline-block bg-badge text-primary text-xs font-semibold px-3 py-1 rounded-full mb-5">Manual de beneficiarios FEDER</div>
+          <h1 class="text-white font-bold leading-tight mb-4" style="font-size: clamp(2rem, 3.5vw, 3.2rem); line-height: 1.1;">APP<br>BENEFICIARIOS</h1>
+          <p class="text-white/75 text-base leading-relaxed mb-6" style="font-size: clamp(0.85rem, 1.2vw, 1rem);">Herramienta de orientación para el cumplimiento de obligaciones de información y comunicación de ayudas cofinanciadas con el Programa Operativo FEDER Andalucía 2014-2020.</p>
+          <div class="flex gap-3 flex-wrap">
+            <a href="#secciones" class="bg-badge text-primary text-sm font-semibold px-5 py-2.5 rounded-full hover:opacity-90 transition-all">Descubrir secciones</a>
+            <a href="disena-tu-soporte.html" class="border border-white/30 text-white text-sm px-5 py-2.5 rounded-full hover:bg-white/10 transition-all">Diseña tu soporte →</a>
+          </div>
+        </div>
+
+        <!-- Right: slogan badge -->
+        <div class="absolute right-16 top-1/2 -translate-y-1/2 text-right hidden lg:block">
+          <div class="text-white/50 text-sm tracking-wider uppercase mb-2">Eslogan oficial</div>
+          <div class="text-white text-xl font-semibold italic">"Andalucía se mueve<br>con Europa"</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom logos bar -->
+    <div class="absolute bottom-0 left-0 w-full bg-navy-dark/60 backdrop-blur-sm">
+      <div class="max-w-[1512px] mx-auto px-16 py-3 flex items-center gap-8">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-6 rounded" style="background:#003399;"></div>
+          <span class="text-white/70 text-xs">Unión Europea · FEDER</span>
+        </div>
+        <div class="w-px h-4 bg-white/20"></div>
+        <span class="text-white/70 text-xs">Ministerio de Hacienda · Fondos Europeos</span>
+        <div class="w-px h-4 bg-white/20"></div>
+        <span class="text-white/70 text-xs">Junta de Andalucía</span>
+        <div class="w-px h-4 bg-white/20"></div>
+        <span class="text-white/70 text-xs font-medium">Agencia IDEA</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile hero slide -->
+  <div class="relative w-full overflow-hidden sm:hidden" style="height: 320px; background: linear-gradient(150deg, #001e78 0%, #0032c8 60%, #001654 100%);">
+    <div class="absolute inset-0 flex flex-col justify-center px-6 pt-4 pb-12">
+      <div class="inline-block bg-badge text-primary text-xs font-semibold px-3 py-1 rounded-full mb-4 self-start">Manual FEDER 2014-2020</div>
+      <h1 class="text-white font-bold text-3xl leading-tight mb-3">APP<br>BENEFICIARIOS</h1>
+      <p class="text-white/70 text-sm leading-relaxed">Cumple con tus obligaciones de información y comunicación FEDER de manera sencilla.</p>
+    </div>
+    <div class="absolute bottom-0 left-0 right-0 bg-navy-dark/70 px-6 py-2 flex items-center gap-4">
+      <div class="w-5 h-4 rounded" style="background:#003399;"></div>
+      <span class="text-white/60 text-xs">Unión Europea · FEDER · Agencia IDEA</span>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <main class="flex-1 max-w-[1512px] mx-auto w-full px-6 py-10">
+
+    <!-- Page title -->
+    <div class="mb-10" id="secciones">
+      <h1 class="font-brand text-primary text-2xl font-[500]">Inicio</h1>
+    </div>
+
+    <!-- Hero -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-16">
+      <div class="relative h-[480px] rounded-2xl overflow-hidden card-img-eu flex items-end">
+        <div class="absolute inset-0 flex flex-col items-center justify-center gap-6 p-10">
+          <!-- EU Stars -->
+          <svg width="80" height="80" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="48" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="2"/>
+            <g fill="#FFD700">
+              <polygon points="50,8 52.5,15.5 60,15.5 54,20 56.5,27.5 50,23 43.5,27.5 46,20 40,15.5 47.5,15.5" transform="rotate(0,50,50)"/>
+              <polygon points="50,8 52.5,15.5 60,15.5 54,20 56.5,27.5 50,23 43.5,27.5 46,20 40,15.5 47.5,15.5" transform="rotate(30,50,50)"/>
+              <polygon points="50,8 52.5,15.5 60,15.5 54,20 56.5,27.5 50,23 43.5,27.5 46,20 40,15.5 47.5,15.5" transform="rotate(60,50,50)"/>
+              <polygon points="50,8 52.5,15.5 60,15.5 54,20 56.5,27.5 50,23 43.5,27.5 46,20 40,15.5 47.5,15.5" transform="rotate(90,50,50)"/>
+              <polygon points="50,8 52.5,15.5 60,15.5 54,20 56.5,27.5 50,23 43.5,27.5 46,20 40,15.5 47.5,15.5" transform="rotate(120,50,50)"/>
+              <polygon points="50,8 52.5,15.5 60,15.5 54,20 56.5,27.5 50,23 43.5,27.5 46,20 40,15.5 47.5,15.5" transform="rotate(150,50,50)"/>
+              <polygon points="50,8 52.5,15.5 60,15.5 54,20 56.5,27.5 50,23 43.5,27.5 46,20 40,15.5 47.5,15.5" transform="rotate(180,50,50)"/>
+              <polygon points="50,8 52.5,15.5 60,15.5 54,20 56.5,27.5 50,23 43.5,27.5 46,20 40,15.5 47.5,15.5" transform="rotate(210,50,50)"/>
+              <polygon points="50,8 52.5,15.5 60,15.5 54,20 56.5,27.5 50,23 43.5,27.5 46,20 40,15.5 47.5,15.5" transform="rotate(240,50,50)"/>
+              <polygon points="50,8 52.5,15.5 60,15.5 54,20 56.5,27.5 50,23 43.5,27.5 46,20 40,15.5 47.5,15.5" transform="rotate(270,50,50)"/>
+              <polygon points="50,8 52.5,15.5 60,15.5 54,20 56.5,27.5 50,23 43.5,27.5 46,20 40,15.5 47.5,15.5" transform="rotate(300,50,50)"/>
+              <polygon points="50,8 52.5,15.5 60,15.5 54,20 56.5,27.5 50,23 43.5,27.5 46,20 40,15.5 47.5,15.5" transform="rotate(330,50,50)"/>
+            </g>
+          </svg>
+          <div class="text-center text-white">
+            <div class="text-2xl font-bold tracking-wider">FEDER 2014–2020</div>
+            <div class="text-sm mt-1 opacity-75">Fondo Europeo de Desarrollo Regional</div>
+          </div>
+          <div class="text-center">
+            <div class="text-white/60 text-xs font-medium tracking-widest uppercase">Programa Operativo</div>
+            <div class="text-white font-semibold mt-1">Andalucía · Competitividad · Innovación · Empleo</div>
+          </div>
+        </div>
+        <div class="relative z-10 w-full px-8 pb-8">
+          <div class="flex items-center gap-3 flex-wrap">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Flag_of_Europe.svg/120px-Flag_of_Europe.svg.png" alt="UE" class="h-6 rounded-sm opacity-90" onerror="this.style.display='none'">
+            <span class="text-white/60 text-xs">Cofinanciado por la Unión Europea</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-5 justify-center">
+        <span class="inline-block bg-badge text-primary text-xs font-[500] px-3 py-1 rounded-full self-start">Manual de beneficiarios</span>
+        <h2 class="font-brand text-primary text-[30px] sm:text-[36px] font-[500] leading-tight">Subvención Global de Andalucía Competitividad-Innovación-Empleo 2014-2020</h2>
+        <div class="flex flex-col gap-3 text-secondary text-[14px] leading-relaxed">
+          <p>Este Manual tiene como objetivo ayudar a los beneficiarios y beneficiarias en el cumplimiento de la normativa en materia de información y comunicación de ayudas cofinanciadas con el Programa Operativo Fondo Europeo de Desarrollo Regional (FEDER).</p>
+          <p>A través de un menú práctico por categorías, podrás conocer tus obligaciones específicas en materia de información y publicidad, así como diseñar los soportes de obra o placa que te correspondan en función del importe de tu proyecto aprobado.</p>
+        </div>
+        <div class="flex items-center justify-between mt-2 flex-wrap gap-4">
+          <div class="flex items-center gap-2 text-xs text-grey">
+            <span>Agencia IDEA</span>
+            <span>·</span>
+            <span>Actualizado el 27/02/2019</span>
+          </div>
+          <a href="disena-tu-soporte.html" class="bg-green text-white text-sm px-5 py-2 rounded-full hover:opacity-90 active:scale-95 transition-all duration-200">Diseña tu soporte</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sections title -->
+    <h2 class="font-brand text-primary text-2xl font-[500] mb-6">Secciones</h2>
+
+    <!-- Cards grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+
+      <!-- NORMATIVA -->
+      <a href="normativa.html" class="flex flex-col gap-3 cursor-pointer group">
+        <div class="relative h-[260px] rounded-2xl overflow-hidden card-img-norm flex items-center justify-center">
+          <div class="text-center text-white p-6">
+            <svg class="w-12 h-12 mx-auto mb-3 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+            <span class="text-sm font-medium opacity-75">Reglamentos UE</span>
+          </div>
+          <div class="absolute bottom-0 left-0 right-0 h-1 bg-badge"></div>
+        </div>
+        <span class="inline-block bg-badge text-primary text-xs font-[500] px-3 py-1 rounded-full self-start">Normativa</span>
+        <h3 class="font-brand text-primary text-[18px] font-[500] leading-snug group-hover:text-green transition-colors duration-200">Reglamentos europeos aplicables a los beneficiarios FEDER</h3>
+        <p class="text-secondary text-sm leading-relaxed line-clamp-3">Conoce la normativa en materia de información y comunicación: Anexo XII del Reglamento (UE) nº 1303/2013 y Reglamento de Ejecución (UE) nº 821/2014.</p>
+      </a>
+
+      <!-- ELEMENTOS DE COMUNICACIÓN -->
+      <a href="elementos-de-comunicacion.html" class="flex flex-col gap-3 cursor-pointer group">
+        <div class="relative h-[260px] rounded-2xl overflow-hidden card-img-elem flex items-center justify-center">
+          <div class="text-center text-white p-6">
+            <svg class="w-12 h-12 mx-auto mb-3 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
+            </svg>
+            <span class="text-sm font-medium opacity-75">Identidad visual</span>
+          </div>
+          <div class="absolute bottom-0 left-0 right-0 h-1 bg-badge"></div>
+        </div>
+        <span class="inline-block bg-badge text-primary text-xs font-[500] px-3 py-1 rounded-full self-start">Comunicación</span>
+        <h3 class="font-brand text-primary text-[18px] font-[500] leading-snug group-hover:text-green transition-colors duration-200">Elementos obligatorios de comunicación para proyectos FEDER</h3>
+        <p class="text-secondary text-sm leading-relaxed line-clamp-3">Emblema UE, logotipo, eslogan «Andalucía se mueve con Europa», marca Agencia IDEA y coexistencia de logotipos.</p>
+      </a>
+
+      <!-- SOPORTES -->
+      <a href="soportes.html" class="flex flex-col gap-3 cursor-pointer group">
+        <div class="relative h-[260px] rounded-2xl overflow-hidden card-img-sop flex items-center justify-center">
+          <div class="text-center text-white p-6">
+            <svg class="w-12 h-12 mx-auto mb-3 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+            <span class="text-sm font-medium opacity-75">Carteles y placas</span>
+          </div>
+          <div class="absolute bottom-0 left-0 right-0 h-1 bg-badge"></div>
+        </div>
+        <span class="inline-block bg-badge text-primary text-xs font-[500] px-3 py-1 rounded-full self-start">Soportes</span>
+        <h3 class="font-brand text-primary text-[18px] font-[500] leading-snug group-hover:text-green transition-colors duration-200">Materiales y soportes de publicidad requeridos</h3>
+        <p class="text-secondary text-sm leading-relaxed line-clamp-3">Fichas técnicas descargables para cartel, placa y web. Consulta las características de cada soporte para tu proyecto.</p>
+      </a>
+
+      <!-- DISEÑA TU SOPORTE -->
+      <a href="disena-tu-soporte.html" class="flex flex-col gap-3 cursor-pointer group">
+        <div class="relative h-[260px] rounded-2xl overflow-hidden card-img-dis flex items-center justify-center">
+          <div class="text-center text-white p-6">
+            <svg class="w-12 h-12 mx-auto mb-3 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+            </svg>
+            <span class="text-sm font-medium opacity-75">Herramienta interactiva</span>
+          </div>
+          <div class="absolute bottom-0 left-0 right-0 h-1 bg-badge"></div>
+        </div>
+        <span class="inline-block bg-badge text-primary text-xs font-[500] px-3 py-1 rounded-full self-start">Herramienta</span>
+        <h3 class="font-brand text-primary text-[18px] font-[500] leading-snug group-hover:text-green transition-colors duration-200">Diseña el soporte adecuado para tu proyecto</h3>
+        <p class="text-secondary text-sm leading-relaxed line-clamp-3">Mediante unos sencillos pasos, obtén orientación y ejemplos prácticos sobre el cumplimiento de tus obligaciones de comunicación.</p>
+      </a>
+
+    </div>
+
+    <!-- Info box -->
+    <div class="bg-gray-50 border border-gray-200 rounded-2xl p-8 mb-16">
+      <div class="flex flex-col md:flex-row gap-6 items-start">
+        <div class="shrink-0">
+          <div class="w-12 h-12 bg-navy rounded-xl flex items-center justify-center">
+            <svg class="w-6 h-6 text-badge" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+        </div>
+        <div>
+          <h3 class="font-brand text-primary text-lg font-[500] mb-2">¿En qué consiste esta aplicación?</h3>
+          <p class="text-secondary text-sm leading-relaxed mb-4">Si eres beneficiario o beneficiaria de fondos europeos FEDER gestionados por Agencia IDEA, estás obligado a cumplir con determinadas medidas de información y publicidad sobre la cofinanciación recibida. Esta aplicación te guía paso a paso para que puedas cumplir con esas obligaciones de manera sencilla.</p>
+          <div class="flex flex-wrap gap-3">
+            <a href="normativa.html" class="bg-navy text-white text-sm px-5 py-2 rounded-full hover:opacity-90 transition-all duration-200">Ver normativa</a>
+            <a href="disena-tu-soporte.html" class="border border-navy text-navy text-sm px-5 py-2 rounded-full hover:bg-navy hover:text-white transition-all duration-200">Diseña tu soporte</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-navy text-white">
+    <!-- Top footer -->
+    <div class="max-w-[1512px] mx-auto px-6 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 bg-white/10 rounded flex items-center justify-center">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="10" stroke="#00f56e" stroke-width="2"/>
+            <path d="M12 6l1.5 4.5H18l-3.75 2.73 1.43 4.4L12 15.27l-3.68 2.46 1.43-4.4L6 10.5h4.5L12 6z" fill="#fff"/>
+          </svg>
+        </div>
+        <span class="font-semibold text-[15px]">APP BENEFICIARIOS</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="https://www.facebook.com/AgenciaIDEA" target="_blank" rel="noopener" class="text-white/60 hover:text-white transition-colors" aria-label="Facebook">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
+        <a href="https://twitter.com/IDEAJunta" target="_blank" rel="noopener" class="text-white/60 hover:text-white transition-colors" aria-label="Twitter">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/user/IDEAJunta" target="_blank" rel="noopener" class="text-white/60 hover:text-white transition-colors" aria-label="YouTube">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/company/agencia-de-innovaci-n-y-desarrollo-de-andaluc-a-idea/" target="_blank" rel="noopener" class="text-white/60 hover:text-white transition-colors" aria-label="LinkedIn">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="max-w-[1512px] mx-auto px-6">
+      <div class="border-t border-white/10"></div>
+    </div>
+
+    <!-- Links grid -->
+    <div class="max-w-[1512px] mx-auto px-6 py-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8">
+      <div>
+        <h3 class="text-sm font-semibold mb-4 text-white">Secciones</h3>
+        <ul class="space-y-2">
+          <li><a href="index.html" class="text-white/60 hover:text-white text-sm transition-colors">Inicio</a></li>
+          <li><a href="normativa.html" class="text-white/60 hover:text-white text-sm transition-colors">Normativa</a></li>
+          <li><a href="elementos-de-comunicacion.html" class="text-white/60 hover:text-white text-sm transition-colors">Elementos de comunicación</a></li>
+          <li><a href="soportes.html" class="text-white/60 hover:text-white text-sm transition-colors">Soportes</a></li>
+          <li><a href="disena-tu-soporte.html" class="text-white/60 hover:text-white text-sm transition-colors">Diseña tu soporte</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-sm font-semibold mb-4 text-white">Información legal</h3>
+        <ul class="space-y-2">
+          <li><a href="contacto.html" class="text-white/60 hover:text-white text-sm transition-colors">Contacto</a></li>
+          <li><a href="aviso-legal.html" class="text-white/60 hover:text-white text-sm transition-colors">Aviso legal</a></li>
+          <li><a href="politica-privacidad.html" class="text-white/60 hover:text-white text-sm transition-colors">Política de privacidad</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-sm font-semibold mb-4 text-white">Organismos</h3>
+        <ul class="space-y-2">
+          <li><a href="https://www.agenciaidea.es" target="_blank" rel="noopener" class="text-white/60 hover:text-white text-sm transition-colors">Agencia IDEA</a></li>
+          <li><a href="https://www.juntadeandalucia.es" target="_blank" rel="noopener" class="text-white/60 hover:text-white text-sm transition-colors">Junta de Andalucía</a></li>
+          <li><a href="https://ec.europa.eu/regional_policy/es/" target="_blank" rel="noopener" class="text-white/60 hover:text-white text-sm transition-colors">Política Regional UE</a></li>
+          <li><a href="https://www.fondoseuropeos.hacienda.gob.es" target="_blank" rel="noopener" class="text-white/60 hover:text-white text-sm transition-colors">Fondos Europeos Andalucía</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-sm font-semibold mb-4 text-white">Cofinanciado por</h3>
+        <div class="flex flex-col gap-3">
+          <div class="bg-white/10 rounded-lg px-3 py-2 text-xs text-white/80">🇪🇺 Unión Europea — FEDER</div>
+          <div class="bg-white/10 rounded-lg px-3 py-2 text-xs text-white/80">🇪🇸 Ministerio de Hacienda</div>
+          <div class="bg-white/10 rounded-lg px-3 py-2 text-xs text-white/80">🟢 Junta de Andalucía</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom footer -->
+    <div class="bg-navy-dark">
+      <div class="max-w-[1512px] mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/40">
+        <span>© 2019 Agencia de Innovación y Desarrollo de Andalucía IDEA. Todos los derechos reservados.</span>
+        <span>Programa Operativo FEDER Andalucía 2014-2020</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+      document.getElementById('mobile-nav').classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>
